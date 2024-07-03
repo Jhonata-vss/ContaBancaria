@@ -1,12 +1,47 @@
-
 import readlinesync = require("readline-sync");
 import { colors } from "./src/util/Colors";
+import { Conta } from "./src/model/Conta";
 
 export function main() {
 
     let opcao: number;
 
-    while (true) {
+    //Novas Instâncias da Classe Conta (Objetos)
+    const c1: Conta = new Conta(1, 1234, 1, 'Jhonata Venicius', 800000.00);
+    const c2: Conta = new Conta(2, 1234, 2, 'Marcella Sanches', 600000.00);
+
+    // Visualizando os dados da Conta c1
+    c1.visualizar();
+
+    // Visualizando os dados da Conta c2
+    c2.visualizar();
+
+    // Visualizando o Saldo da Conta c1
+    console.log(`\nO Saldo da conta 01 é: ${c1.saldo}`);
+
+    // Alterando o Saldo da Conta c2
+    c2.saldo = 900000.00;
+
+    // Visualizando o Saldo da Conta c2, depois de atualizar o valor
+    console.log(`\nO Saldo da conta 02 é: ${c2.saldo}`);
+
+    // Saque nas Contas
+    console.log(`\nSacar 100.00 Reais da Conta C1: ${c1.sacar(100)}`); // true
+    c1.visualizar();
+
+    console.log(`\nSacar 1000000.00 Reais da Conta C2: ${c2.sacar(1000000)}`); // false
+    c2.visualizar();
+
+    // Depósito nas Contas
+    console.log(`\nDepositar 200000.00 Reais da Conta C1: `); 
+    c1.depositar(200000)
+    c1.visualizar();
+
+    console.log(`\nDepositar 300000.25 Reais da Conta C2: `); 
+    c2.depositar(300000.25)
+    c2.visualizar();
+
+     while (true) {
 
         console.log(colors.bg.cyanbright, colors.fg.blackstrong)
         
@@ -33,7 +68,7 @@ colors.reset
         opcao = readlinesync.questionInt("");
 
         if (opcao == 9) {
-            console.log("\nBanco do Brazil com Z - O seu Futuro começa aqui!");
+            console.log("\n HYDRA BANK - O seu Futuro começa aqui!");
             sobre();
             process.exit(0);
         }
@@ -83,11 +118,11 @@ colors.reset
 /* Função com os dados da pessoa desenvolvedora */
 
 export function sobre(): void {
-    console.log("\n*****************************************************");
+    console.log("\n___________________________________________________");
     console.log("Projeto Desenvolvido por: Jhonata Venicius S. Santos ");
     console.log("DEV.JHO - jhonatasenac15@gmail.com");
     console.log("github.com/Jhonata-vss");
-    console.log("*****************************************************");
+    console.log("_____________________________________________________");
 }
 
 main();
