@@ -8,44 +8,8 @@ export function main() {
 
     let opcao: number;
 
-    //CONTA
 
-    //Novas Instâncias da Classe Conta (Objetos)
-    const c1: Conta = new Conta(1, 1234, 1, 'Jhonata Venicius', 800000.00);
-    const c2: Conta = new Conta(2, 1234, 2, 'Marcella Sanches', 600000.00);
-
-    // Visualizando os dados da Conta c1
-    c1.visualizar();
-
-    // Visualizando os dados da Conta c2
-    c2.visualizar();
-
-    // Visualizando o Saldo da Conta c1
-    console.log(`\nO Saldo da conta 01 é: ${c1.saldo}`);
-
-    // Alterando o Saldo da Conta c2
-    c2.saldo = 900000.00;
-
-    // Visualizando o Saldo da Conta c2, depois de atualizar o valor
-    console.log(`\nO Saldo da conta 02 é: ${c2.saldo}`);
-
-    // Saque nas Contas
-    console.log(`\nSacar 100.00 Reais da Conta C1: ${c1.sacar(100)}`); // true
-    c1.visualizar();
-
-    console.log(`\nSacar 1000000.00 Reais da Conta C2: ${c2.sacar(1000000)}`); // false
-    c2.visualizar();
-
-    // Depósito nas Contas
-    console.log(`\nDepositar 200000.00 Reais da Conta C1: `); 
-    c1.depositar(200000)
-    c1.visualizar();
-
-    console.log(`\nDepositar 300000.25 Reais da Conta C2: `); 
-    c2.depositar(300000.25)
-    c2.visualizar();
-
-     // // CONTA CORRENTE
+    // CONTA CORRENTE
 
     // Criando novas Instâncias da Classe Conta Corrente (Objetos)
     const cc1: ContaCorrente = new ContaCorrente(3, 1234, 1, 'Amanda Magro', 1000000.00,100000);
@@ -99,58 +63,63 @@ export function main() {
     cp2.depositar(1500);
     cp2.visualizar();
 
-        while (true) {
+    while (true) {
 
         console.log(colors.bg.cyanbright, colors.fg.blackstrong)
-        
-        console.log("_____________________________________________________");
-        console.log("                                                     ");
-        console.log("                    HYDRA BANK                       ");
-        console.log("                                                     ");
-        console.log("_____________________________________________________");
-        console.log("                                                     ");
-        console.log("             1 - Criar Conta                         ");
-        console.log("             2 - Listar todas as Contas              ");
-        console.log("             3 - Buscar Conta por Numero             ");
-        console.log("             4 - Atualizar Dados da Conta            ");
-        console.log("             5 - Apagar Conta                        ");
-        console.log("             6 - Sacar                               ");
-        console.log("             7 - Depositar                           ");
-        console.log("             8 - Transferir valores entre Contas     ");
-        console.log("             9 - Sair                                ");
-        console.log("                                                     ");
-        console.log("_____________________________________________________");
-        console.log("                                                     ");
-colors.reset
 
-        console.log(colors.fg.blackstrong)
+        console.log("*****************************************************");
+        console.log("                                                     ");
+        console.log("              BANCO DO BRASIL DO BRASIL              ");
+        console.log("                                                     ");
+        console.log("*****************************************************");
+        console.log("                                                     ");
+        console.log("            1 - Criar Conta                          ");
+        console.log("            2 - Listar todas as Contas               ");
+        console.log("            3 - Buscar Conta por Numero              ");
+        console.log("            4 - Atualizar Dados da Conta             ");
+        console.log("            5 - Apagar Conta                         ");
+        console.log("            6 - Sacar                                ");
+        console.log("            7 - Depositar                            ");
+        console.log("            8 - Transferir valores entre Contas      ");
+        console.log("            9 - Sair                                 ");
+        console.log("                                                     ");
+        console.log("*****************************************************");
+        console.log("                                                     ",colors.reset);
+
+        console.log(colors.fg.cyan)
         console.log("Entre com a opção desejada: ");
         opcao = readlinesync.questionInt("");
 
         if (opcao == 9) {
-            console.log("\n HYDRA BANK - O seu Futuro começa aqui!");
+            console.log(colors.fg.cyan)
+            console.log("\nHYDRA BANK - O seu Futuro começa aqui!");
             sobre();
             process.exit(0);
         }
 
         switch (opcao) {
             case 1:
+                console.log(colors.fg.cyan)
                 console.log("\n\nCriar Conta\n\n");
 
                 break;
             case 2:
+                console.log(colors.fg.cyan)
                 console.log("\n\nListar todas as Contas\n\n");
 
                 break;
             case 3:
+                console.log(colors.fg.cyan)
                 console.log("\n\nConsultar dados da Conta - por número\n\n");
 
                 break;
             case 4:
+                console.log(colors.fg.cyan)
                 console.log("\n\nAtualizar dados da Conta\n\n");
 
                 break;
             case 5:
+                console.log(colors.fg.cyan);
                 console.log("\n\nApagar uma Conta\n\n");
 
                 break;
@@ -178,11 +147,11 @@ colors.reset
 /* Função com os dados da pessoa desenvolvedora */
 
 export function sobre(): void {
-    console.log("\n___________________________________________________");
+    console.log("\n___________________");
     console.log("Projeto Desenvolvido por: Jhonata Venicius S. Santos ");
     console.log("DEV.JHO - jhonatasenac15@gmail.com");
     console.log("github.com/Jhonata-vss");
-    console.log("_____________________________________________________");
+    console.log("___________________");
 }
 
 main();
