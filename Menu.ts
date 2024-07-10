@@ -22,7 +22,7 @@ export function main() {
 
     while (true) {
 
-        console.log(colors.bg.black, colors.fg.green,
+        console.log(colors.bg.cyan, colors.fg.black,
             "*****************************************************");
         console.log("                                                     ");
         console.log("                BANCO DO BRAZIL COM Z                ");
@@ -47,7 +47,7 @@ export function main() {
         opcao = readlinesync.questionInt("");
 
         if (opcao == 9) {
-            console.log(colors.fg.greenstrong,
+            console.log(colors.fg.cyan,
                 "\nBanco do Brazil com Z - O seu Futuro começa aqui!");
             sobre();
             console.log(colors.reset, "");
@@ -195,9 +195,9 @@ export function main() {
 /* Função com os dados da pessoa desenvolvedora */
 function sobre(): void {
     console.log("\n*****************************************************");
-    console.log("Projeto Desenvolvido por: ");
-    console.log("Generation Brasil - generation@generation.org");
-    console.log("github.com/conteudoGeneration");
+    console.log("Projeto Desenvolvido por: Jhonata Venicius Sousa Santos ");
+    console.log("Generation Brasil - jhoatasenac15@gmail.com");
+    console.log("github.com/Jhonata-vss");
     console.log("*****************************************************");
 }
 
