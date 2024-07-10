@@ -1,4 +1,12 @@
+import { ContaCorrente } from "./ContaCorrente";
+
 export abstract class Conta {
+    static cadastrar(arg0: ContaCorrente) {
+        throw new Error("Method not implemented.");
+    }
+    static gerarNumero(): number {
+        throw new Error("Method not implemented.");
+    }
 
 	// Definir os Atributos da Classe (Caracteristicas)
 	private _numero: number;
