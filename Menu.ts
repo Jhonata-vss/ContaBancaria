@@ -1,4 +1,4 @@
-﻿import readlinesync = require("readline-sync");
+﻿﻿﻿import readlinesync = require("readline-sync");
 import { ContaCorrente } from "./src/model/ContaCorrente";
 import { ContaPoupanca } from "./src/model/ContaPoupanca";
 import { colors } from './src/util/Colors';
@@ -6,7 +6,7 @@ import { ContaController } from "./src/controller/ContaController";
 
 export function main() {
 
-    let opcao, numero, agencia, tipo, saldo, limite, aniversario: number;
+    let opcao, numero, agencia, tipo, saldo, limite, aniversario, valor, numeroDestino: number;
     let titular: string;
     const tipoContas = ['Conta Corrente', 'Conta Poupança'];
 
@@ -22,10 +22,10 @@ export function main() {
 
     while (true) {
 
-        console.log(colors.bg.cyan, colors.fg.black,
+        console.log(colors.bg.black, colors.fg.green,
             "*****************************************************");
         console.log("                                                     ");
-        console.log("                     HYDRA BANK                      ");
+        console.log("                BANCO DO BRAZIL COM Z                ");
         console.log("                                                     ");
         console.log("*****************************************************");
         console.log("                                                     ");
@@ -47,8 +47,8 @@ export function main() {
         opcao = readlinesync.questionInt("");
 
         if (opcao == 9) {
-            console.log(colors.fg.cyan,
-                "\nHYDRA BANK - O seu Futuro começa aqui!");
+            console.log(colors.fg.greenstrong,
+                "\nBanco do Brazil com Z - O seu Futuro começa aqui!");
             sobre();
             console.log(colors.reset, "");
             process.exit(0);
@@ -56,7 +56,7 @@ export function main() {
 
         switch (opcao) {
             case 1:
-                console.log(colors.fg.cyan,
+                console.log(colors.fg.whitestrong,
                     "\n\nCriar Conta\n\n", colors.reset);
 
                 console.log('Digite o Número da Agência: ');
@@ -91,13 +91,13 @@ export function main() {
                 keyPress()
                 break;
             case 2:
-                console.log(colors.fg.cyan,
+                console.log(colors.fg.whitestrong,
                     "\n\nListar todas as Contas\n\n", colors.reset);
                 contas.listarTodas();
                 keyPress()
                 break;
             case 3:
-                console.log(colors.fg.cyan,
+                console.log(colors.fg.whitestrong,
                     "\n\nConsultar dados da Conta - por número\n\n", colors.reset);
 
                 console.log("Digite o número da Conta: ")
@@ -108,7 +108,7 @@ export function main() {
                 keyPress()
                 break;
             case 4:
-                console.log(colors.fg.cyan,
+                console.log(colors.fg.whitestrong,
                     "\n\nAtualizar dados da Conta\n\n", colors.reset);
 
                 console.log("Digite o número da Conta: ")
@@ -153,7 +153,7 @@ export function main() {
                 keyPress()
                 break;
             case 5:
-                console.log(colors.fg.cyan,
+                console.log(colors.fg.whitestrong,
                     "\n\nApagar uma Conta\n\n", colors.reset);
 
                 console.log("Digite o número da Conta: ")
@@ -164,25 +164,52 @@ export function main() {
                 keyPress()
                 break;
             case 6:
-                console.log(colors.fg.cyan,
+                console.log(colors.fg.whitestrong,
                     "\n\nSaque\n\n", colors.reset);
+
+                console.log("Digite o número da Conta: ")
+                numero = readlinesync.questionInt("");
+
+                console.log("Digite o valor do saque: ")
+                valor = readlinesync.questionFloat("");
+
+                contas.sacar(numero, valor);
 
                 keyPress()
                 break;
             case 7:
-                console.log(colors.fg.cyan,
+                console.log(colors.fg.whitestrong,
                     "\n\nDepósito\n\n", colors.reset);
+
+                console.log("Digite o número da Conta: ")
+                numero = readlinesync.questionInt("");
+
+                console.log("Digite o valor do depósito: ")
+                valor = readlinesync.questionFloat("");
+
+                contas.depositar(numero, valor);
 
                 keyPress()
                 break;
             case 8:
-                console.log(colors.fg.cyan,
+                console.log(colors.fg.whitestrong,
                     "\n\nTransferência entre Contas\n\n", colors.reset);
+
+                console.log("Digite o número da Conta de Origem: ")
+                numero = readlinesync.questionInt("");
+
+                console.log("Digite o número da Conta de Destino: ")
+                numeroDestino = readlinesync.questionInt("");
+
+                console.log("Digite o valor do saque: ")
+                valor = readlinesync.questionFloat("");
+
+                contas.transferir(numero, numeroDestino, valor);
 
                 keyPress()
                 break;
             default:
-                console.log(colors.fg.cyan,
+                console.log(colors.fg.whitestrong,
                     "\nOpção Inválida!\n", colors.reset);
 
                 keyPress()
@@ -195,9 +222,9 @@ export function main() {
 /* Função com os dados da pessoa desenvolvedora */
 function sobre(): void {
     console.log("\n*****************************************************");
-    console.log("Projeto Desenvolvido por: Jhonata Venicius Sousa Santos.");
-    console.log("Generation Brasil - jhonatasenac15@gmail.com");
-    console.log("github.com/Jhonata-vss");
+    console.log("Projeto Desenvolvido por: ");
+    console.log("Generation Brasil - generation@generation.org");
+    console.log("github.com/conteudoGeneration");
     console.log("*****************************************************");
 }
 
