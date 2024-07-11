@@ -1,12 +1,4 @@
-import { ContaCorrente } from "./ContaCorrente";
-
 export abstract class Conta {
-    static cadastrar(arg0: ContaCorrente) {
-        throw new Error("Method not implemented.");
-    }
-    static gerarNumero(): number {
-        throw new Error("Method not implemented.");
-    }
 
 	// Definir os Atributos da Classe (Caracteristicas)
 	private _numero: number;
@@ -83,7 +75,7 @@ export abstract class Conta {
 		this._saldo = this._saldo + valor;
 	}
 
-	// Método para visualizar todos os dados do Objeto
+	// Método para visualizar todas as informações do Objeto
 	public visualizar(): void{
 
 		let tipo: string = "";

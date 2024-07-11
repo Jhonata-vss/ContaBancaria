@@ -1,13 +1,9 @@
-﻿﻿﻿import { Conta } from "../model/Conta";
-import { ContaRepository } from "../repository/ContaRepository";
-
+﻿﻿import { Conta } from '../model/Conta';
+import { ContaRepository } from './../repository/ContaRepository';
 export class ContaController implements ContaRepository {
-    listaTodas(): void {
-        throw new Error("Method not implemented.");
-    }
 
-    // Coleção Array que vai armazenar os Objetos Conta
-    private listaContas: Array<Conta> = new Array<Conta>();
+    // Coleção do tipo Array para armazenar objetos do tipo Conta
+    private _listaContas: Conta[] = new Array<Conta>();
 
     // Controlar os Números das Contas
     public numero: number = 0;
@@ -15,91 +11,93 @@ export class ContaController implements ContaRepository {
     procurarPorNumero(numero: number): void {
         let buscaConta = this.buscarNoArray(numero);
 
-        if (buscaConta !== null)
+        if (buscaConta !== null) {
             buscaConta.visualizar();
-        else
-            console.log("\nA Conta não foi encontrada!");
+        } else {
+            console.log("Conta não encontrada!");
+        }
     }
-
-    listarTodas(): void {
-        for (let conta of this.listaContas) {
-            conta.visualizar()
+    listaTodas(): void {
+        for (let conta of this._listaContas) {
+            conta.visualizar();
         }
     }
 
     cadastrar(conta: Conta): void {
-        this.listaContas.push(conta);
-        console.log("A Conta foi cadastrada com sucesso!")
+        this._listaContas.push(conta);
+        console.log("A conta foi cadastrada com sucesso!");
     }
-
     atualizar(conta: Conta): void {
         let buscaConta = this.buscarNoArray(conta.numero);
 
-        if (buscaConta !== null) {
-            this.listaContas[this.listaContas.indexOf(buscaConta)] = conta;
-            console.log("\nA Conta foi atualizada!")
-        } else
-            console.log("\nA Conta não foi encontrada!");
-    }
 
+        if (buscaConta !== null) {
+            this._listaContas[this._listaContas.indexOf(buscaConta)] = conta;
+            console.log("\nA conta foi atualizada!");
+        } else {
+            console.log("\nConta não encontrada!");
+        }
+    }
     deletar(numero: number): void {
         let buscaConta = this.buscarNoArray(numero);
 
         if (buscaConta !== null) {
-            this.listaContas.splice(this.listaContas.indexOf(buscaConta), 1);
-            console.log("\nA Conta foi excluída!")
-        } else
-            console.log("\nA Conta não foi encontrada!");
+            this._listaContas.splice(this._listaContas.indexOf(buscaConta), 1);
+            console.log(`\nA conta ${buscaConta.numero} foi excluída!`)
+        } else {
+            console.log("Conta não encontrada!");
+        }
     }
 
     sacar(numero: number, valor: number): void {
         let buscaConta = this.buscarNoArray(numero);
 
-        
         if (buscaConta !== null) {
-
-            if (buscaConta.sacar(valor) === true)
-                console.log("\nO Saque foi efetuado com sucesso!")
-        } else
-            console.log("\nA Conta não foi encontrada!");
+            if (buscaConta.sacar(valor)) {
+                console.log("\nO Saque foi efetuado com sucesso!");
+            }
+        } else {
+            console.log("Conta não encontrada!");
+        }
     }
-
     depositar(numero: number, valor: number): void {
         let buscaConta = this.buscarNoArray(numero);
 
         if (buscaConta !== null) {
             buscaConta.depositar(valor);
-            console.log("\nO Depósito foi efetuado com sucesso!")
-        } else
-            console.log("\nA Conta não foi encontrada!");
+        } else {
+            console.log("Conta não encontrada!");
+        }
     }
-
     transferir(numeroOrigem: number, numeroDestino: number, valor: number): void {
         let buscaContaOrigem = this.buscarNoArray(numeroOrigem);
         let buscaContaDestino = this.buscarNoArray(numeroDestino);
 
+
         if (buscaContaOrigem !== null && buscaContaDestino !== null) {
-            if (buscaContaOrigem.sacar(valor) === true){
+            if (buscaContaOrigem.sacar(valor) === true) {
                 buscaContaDestino.depositar(valor);
-                console.log("\nA Transfrência foi efetuada com sucesso!")
+                console.log("\nA Transferência foi efetuada com sucesso!");
             }
-        } else
-            console.log("\nA Conta de Origem e/ou Destino não foram encontradas!");
+        } else {
+            console.log("\nA Conta de Origem e/ou Conta de Destino não foram encontradas!");
+        }
     }
 
-    // Métodos Auxiliares
 
+    // Métodos Auxiliares 
     public gerarNumero(): number {
         return ++this.numero;
     }
 
     public buscarNoArray(numero: number): Conta | null {
-
-        for (let conta of this.listaContas) {
-            if (conta.numero === numero)
+        for (let conta of this._listaContas) {
+            if (conta.numero === numero) {
                 return conta;
+            }
         }
 
         return null;
     }
+
 }
